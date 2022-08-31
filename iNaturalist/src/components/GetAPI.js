@@ -1,13 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  FlatList,
-  TextInput,
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  Image,
-} from 'react-native';
+import {FlatList, TextInput, Text, View, StyleSheet, Image} from 'react-native';
 
 export default GetAPI = () => {
   const [loading, setLoading] = useState(true);
