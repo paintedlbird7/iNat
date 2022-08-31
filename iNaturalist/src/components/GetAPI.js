@@ -32,6 +32,10 @@ export default GetAPI = () => {
     return <View>{!loading ? <Text>{item?.taxon?.name}</Text> : null}</View>;
   };
 
+  let renderSeperator = () => {
+    return <View style={styles.seperator} />;
+  };
+
   console.log(searchTerm);
   return (
     <View>
@@ -47,31 +51,31 @@ export default GetAPI = () => {
       {data
         .filter(val => {
           if (searchTerm === 'Year') {
-            return <Text>{val.observed_on_details.year}</Text>;
+            return <Text>{val?.observed_on_details?.year}</Text>;
           }
         })
         .map((val, key) => {
           return (
             <View>
-              <Text> {val.observed_on_details.year}</Text>
+              <Text> {val?.observed_on_details?.year}</Text>
             </View>
           );
         })}
-
-
-      {data && (
-        <FlatList
-          // keyExtractor={result => result.toString()}
-          data={data}
-          renderItem={renderItem}
-        />
-      )}
       <Image
         style={styles.image}
         source={{
           uri: 'https://inaturalist-open-data.s3.amazonaws.com/photos/226317638/square.jpg',
         }}
       />
+      {data && (
+        <FlatList
+          // keyExtractor={result => result.toString()}
+          data={data}
+          ItemSeparatorComponent={renderSeperator}
+          renderItem={renderItem}
+          // renderSeperator={renderSeperator}
+        />
+      )}
     </View>
   );
 };
@@ -103,5 +107,16 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+  },
+  text: {
+    fontColor: 'red',
+  },
+  seperator: {
+    height: 1,
+    width: '100%',
+    backgroundColor: '#607D8B',
+    margin: '5%',
+    marginLeft: '1%',
+    // borderColor: 'red',
   },
 });
