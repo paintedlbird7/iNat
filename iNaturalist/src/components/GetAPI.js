@@ -29,7 +29,11 @@ export default GetAPI = () => {
 
   const renderItem = ({item}) => {
     // console.log(item);
-    return <View>{!loading ? <Text>{item?.taxon?.name}</Text> : null}</View>;
+    return (
+      <View style={styles.view}>
+        <Text>{item?.taxon?.name}</Text>
+      </View>
+    );
   };
 
   let renderSeperator = () => {
@@ -69,11 +73,9 @@ export default GetAPI = () => {
       />
       {data && (
         <FlatList
-          // keyExtractor={result => result.toString()}
           data={data}
           ItemSeparatorComponent={renderSeperator}
           renderItem={renderItem}
-          // renderSeperator={renderSeperator}
         />
       )}
     </View>
@@ -84,23 +86,14 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     alignItems: 'center',
-    padding: 10,
-    backgroundColor: 'white',
   },
   image: {
-    backgroundColor: 'red',
+    alignItems: 'center',
     width: 230,
     height: 150,
     borderWidth: 3,
-    marginBottom: 5,
-    // marginBottom: 85,
-  },
-  loading: {
-    height: 50,
-    justifyContent: 'center',
-    fontSize: 50,
-    padding: 60,
-    color: 'white',
+    marginBottom: 35,
+    marginLeft: 70,
   },
   input: {
     height: 40,
@@ -108,15 +101,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
-  text: {
-    fontColor: 'red',
-  },
   seperator: {
     height: 1,
     width: '100%',
     backgroundColor: '#607D8B',
     margin: '5%',
     marginLeft: '1%',
-    // borderColor: 'red',
   },
 });
